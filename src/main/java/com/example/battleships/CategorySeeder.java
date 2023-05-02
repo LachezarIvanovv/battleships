@@ -27,7 +27,6 @@ public class CategorySeeder implements CommandLineRunner {
             List<Category> categories = Arrays.stream(ShipType.values())
                     .map(Category::new)
                     .toList();
-
             this.categoryRepository.saveAll(categories);
         }
     }
