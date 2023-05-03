@@ -23,7 +23,7 @@ spring:
 #    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: update
-    open-in-view: false
+    open-in-view: true
     properties:
       hibernate:
         format_sql: true
@@ -33,3 +33,5 @@ spring:
   #api-key:
   #api-secret:
   #cloud-name:
+server:
+  port : 8090
