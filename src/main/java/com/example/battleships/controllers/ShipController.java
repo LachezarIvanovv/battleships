@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ShipController {
 
 
-    private ShipService shipService;
+    private final ShipService shipService;
 
     public ShipController(ShipService shipService) {
         this.shipService = shipService;

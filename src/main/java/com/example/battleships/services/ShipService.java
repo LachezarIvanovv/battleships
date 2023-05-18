@@ -16,10 +16,10 @@ import java.util.Optional;
 @Service
 public class ShipService {
 
-    private ShipRepository shipRepository;
-    private CategoryRepository categoryRepository;
+    private final ShipRepository shipRepository;
+    private final CategoryRepository categoryRepository;
     private final LoggedUser loggedUser;
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public ShipService(ShipRepository shipRepository,
                        CategoryRepository categoryRepository,
