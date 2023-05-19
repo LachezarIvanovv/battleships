@@ -61,7 +61,7 @@ public class AuthController {
             redirectAttributes.addFlashAttribute(
                     "org.springframework.validation.BindingsResult.registrationDTO", bindingResult);
 
-            return "reddirect:/register";
+            return "redirect:/register";
         }
         return "login";
     }
@@ -101,7 +101,7 @@ public class AuthController {
             redirectAttributes.addFlashAttribute("loginDTO", loginDTO);
             redirectAttributes.addFlashAttribute("badCredentials", true);
 
-            return "reddirect:/login";
+            return "redirect:/login";
         }
 
         return "redirect:/home";

@@ -50,10 +50,10 @@ public class ShipController {
             return "redirect:/";
         }
 
-        if(bindingResult.hasErrors() || !this.shipService.create(createShipDTO)){
+        if (bindingResult.hasErrors() || !this.shipService.create(createShipDTO)) {
             redirectAttributes.addFlashAttribute("createShipDTO", createShipDTO);
             redirectAttributes.addFlashAttribute(
-                    "org.springframework.validation.BindingsResult.createShipDTO", bindingResult);
+                    "org.springframework.validation.BindingResult.createShipDTO", bindingResult);
 
             return "redirect:/ships/add";
         }
