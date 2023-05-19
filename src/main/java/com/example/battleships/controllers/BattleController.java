@@ -11,7 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class BattleController {
 
-    private BattleService battleService;
+    private final BattleService battleService;
 
     public BattleController(BattleService battleService) {
         this.battleService = battleService;

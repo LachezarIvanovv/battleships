@@ -39,7 +39,13 @@ public class HomeController {
 
     @GetMapping("/home")
     public String loggedInIndex(Model model){
+
         long loggedUserId = this.loggedUser.getId();
+
+        if(loggedUserId == 0){
+            return "redirect:/";
+        }
+
         List<ShipDTO> ownShips = this.shipService.getShipsOwnedBy(loggedUserId);
         List<ShipDTO> enemyShips = this.shipService.getShipsNotOwnedBy(loggedUserId);
         List<ShipDTO> sortedShips = this.shipService.getAllSorted();

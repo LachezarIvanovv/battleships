@@ -58,4 +58,8 @@ public class AuthService {
 
         return true;
     }
+
+    public void logout() {
+        this.userSession.logout();
+    }
 }
