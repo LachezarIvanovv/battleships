@@ -33,7 +33,14 @@ public class HomeController {
 
     @GetMapping("/")
     public String loggedOutIndex(){
-            return "index";
+
+        long loggedUserId = this.loggedUser.getId();
+
+        if(loggedUserId != 0){
+            return "redirect:/home";
+        }
+
+        return "index";
     }
 
 

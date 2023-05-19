@@ -3,6 +3,7 @@ package com.example.battleships.controllers;
 import com.example.battleships.models.dtos.LoginDTO;
 import com.example.battleships.models.dtos.UserRegistrationDTO;
 import com.example.battleships.services.AuthService;
+import com.example.battleships.session.LoggedUser;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -16,8 +17,11 @@ public class AuthController {
 
     private final AuthService authService;
 
-    public AuthController(AuthService authService) {
+    private final LoggedUser loggedUser;
+
+    public AuthController(AuthService authService, LoggedUser loggedUser) {
         this.authService = authService;
+        this.loggedUser = loggedUser;
     }
 
     @ModelAttribute("registrationDTO")
@@ -32,6 +36,12 @@ public class AuthController {
 
     @GetMapping("/register")
     public String register(){
+
+        long loggedUserId = this.loggedUser.getId();
+
+        if(loggedUserId != 0){
+            return "redirect:/home";
+        }
         return "register";
     }
 
@@ -39,6 +49,13 @@ public class AuthController {
     public String register(@Valid UserRegistrationDTO registrationDTO,
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes){
+
+        long loggedUserId = this.loggedUser.getId();
+
+        if(loggedUserId != 0){
+            return "redirect:/home";
+        }
+
         if(bindingResult.hasErrors() || !this.authService.register(registrationDTO)){
             redirectAttributes.addFlashAttribute("registrationDTO", registrationDTO);
             redirectAttributes.addFlashAttribute(
@@ -51,6 +68,13 @@ public class AuthController {
 
     @GetMapping ("/login")
     public String login(){
+
+        long loggedUserId = this.loggedUser.getId();
+
+        if(loggedUserId != 0){
+            return "redirect:/home";
+        }
+
         return "login";
     }
 
@@ -58,6 +82,13 @@ public class AuthController {
     public String login(@Valid LoginDTO loginDTO,
                         BindingResult bindingResult,
                         RedirectAttributes redirectAttributes){
+
+        long loggedUserId = this.loggedUser.getId();
+
+        if(loggedUserId != 0){
+            return "redirect:/home";
+        }
+
         if(bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("loginDTO", loginDTO);
             redirectAttributes.addFlashAttribute(
